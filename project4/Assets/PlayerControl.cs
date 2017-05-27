@@ -17,7 +17,11 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void Update(){
+		int i = 0;
+	
 	}
+	     
+
 
 	void FixedUpdate(){
 		float moveHorizontal = Input.GetAxis( "Horizontal" );
