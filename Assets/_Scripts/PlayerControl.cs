@@ -36,10 +36,15 @@ public class PlayerControl : MonoBehaviour {
 		if(moveHorizontal == 0 && moveVertical == 0)
 			rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
 
-		if(Input.GetButtonDown("Jump") && !isJumping){
+		if(Input.GetButton("Jump") && !isJumping){
 			rb.velocity = new Vector3(rb.velocity.x, jump, rb.velocity.z);
 
 			isJumping = true;
+		}
+
+		if(!isJumping && Input.GetButton("Fire3")){
+			rb.velocity = Vector3.zero;
+			Debug.Log("Pressed");
 		}
 	}
 
