@@ -5,41 +5,41 @@ public class CameraControl : MonoBehaviour {
 
 	public GameObject player;
 
-	//Vars for camera rotation speed.
-	public float rotationSpeed = 70;
+	//Vars for camera rotation.
+	public float sensitivity = 300f;
 
-	// Vars for camera transform.
-	private Vector3 offset = new Vector3(0, 2.5f, -3.5f);
-	private Quaternion rotationOffset = Quaternion.identity;
+	//Vars for camera initialize.
+	Vector3 lookAtDirection;
+	Quaternion rotation;
+	private float distance = 3.5f;
+	private float currentX = 0f;
+	private float currentY = 0f;
 
-	void InitiateCameraTransform() {
-		rotationOffset.eulerAngles = new Vector3(25, 0, 0);
-		transform.position = player.transform.position + offset;
-		transform.rotation = rotationOffset;
+
+	void GetMouseAxis() {
+		currentX += Mathf.Clamp(Input.GetAxisRaw ("Mouse X"), -1, 1) * sensitivity * Time.deltaTime;
+		currentY += Mathf.Clamp (Input.GetAxisRaw ("Mouse Y"), -1, 1) * sensitivity * Time.deltaTime;
+
+		currentY = Mathf.Clamp (currentY, -60, 60);
+		Debug.Log("X: " + currentX + " Y: " + currentY);
 	}
 
-
-
 	void RotateCamera() {
-		if (Input.GetAxis ("Mouse X") > 0) {
-			transform.RotateAround (player.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
-		} else if (Input.GetAxis ("Mouse X") < 0) {
-			transform.RotateAround (player.transform.position, Vector3.down, rotationSpeed * Time.deltaTime);
-		} else if (Input.GetAxis ("Mouse Y") > 0) {
-			transform.RotateAround (player.transform.position, Vector3.right, rotationSpeed * Time.deltaTime);
-		} else if (Input.GetAxis ("Mouse Y") < 0) {
-			transform.RotateAround (player.transform.position, Vector3.left, rotationSpeed * Time.deltaTime);
-		}	
+		rotation = Quaternion.Euler (-currentY, currentX, 0);
+		transform.position = player.transform.position + rotation * lookAtDirection;
+		transform.LookAt (player.transform.position);
 	}
 
 	void Start () {
-		InitiateCameraTransform ();
+		lookAtDirection = new Vector3 (0, 0, -distance); //max distance between player and camera
 	}
-		
+
+	void Update() {
+		GetMouseAxis();
+	}
+
 	void LateUpdate () {
-		RotateCamera ();
-		//transform.position = player.transform.position + offset;
-		//
+		RotateCamera();
 	}
 		
 }
