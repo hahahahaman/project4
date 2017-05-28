@@ -20,16 +20,15 @@ public class PlayerControl : MonoBehaviour {
 
 	void Update(){
 		int i = 0;
+		Debug.DrawRay(camera.transform.position, camera.transform.forward * 10000f, Color.green);
 	}
 
 	void FixedUpdate(){
+		/* movement */
 		float moveHorizontal = Input.GetAxis( "Horizontal" );
 		float moveVertical = Input.GetAxis( "Vertical" );
 
 		Vector3 movement = new Vector3(moveHorizontal*speed, rb.velocity.y, moveVertical*speed);
-
-
-
 		movement = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * movement;
 
 		rb.velocity = movement;
