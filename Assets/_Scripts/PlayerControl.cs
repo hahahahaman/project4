@@ -29,10 +29,7 @@ public class PlayerControl : MonoBehaviour {
 		float moveVertical = Input.GetAxis( "Vertical" );
 
 		Vector3 movement = new Vector3(moveHorizontal*speed, rb.velocity.y, moveVertical*speed);
-<<<<<<< HEAD
 
-=======
->>>>>>> da2b10e3a082c89a6f7394d1e6299844ce56fa00
 		movement = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * movement;
 
 		rb.velocity = movement;

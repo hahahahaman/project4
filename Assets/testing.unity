@@ -675,11 +675,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-<<<<<<< HEAD
   m_Height: 2
-=======
-  m_Height: 1
->>>>>>> da2b10e3a082c89a6f7394d1e6299844ce56fa00
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1844667605
@@ -713,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cefde4c9d3971e4c98df36e2900364f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 10
   jump: 10
   camera: {fileID: 1715926815}
 --- !u!1001 &1987880977
