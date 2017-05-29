@@ -28,8 +28,6 @@ public class PlayerControl : MonoBehaviour {
 
 		Vector3 movement = new Vector3(moveHorizontal*speed, rb.velocity.y, moveVertical*speed);
 
-
-
 		movement = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * movement;
 
 		rb.velocity = movement;
