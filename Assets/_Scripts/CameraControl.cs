@@ -18,8 +18,6 @@ public class CameraControl : MonoBehaviour {
 	private float currentX = 0f;
 	private float currentY = 0f;
 
-
-
 	void GetMouseAxis() {
 		currentX += Mathf.Clamp(Input.GetAxisRaw ("Mouse X"), -1, 1) * sensitivity * Time.deltaTime;
 		currentY += Mathf.Clamp (Input.GetAxisRaw ("Mouse Y"), -1, 1) * sensitivity * Time.deltaTime;
